@@ -80,16 +80,43 @@ img {
 }
 
 /*=============== THEME ===============*/
-
+.change-theme {
+  font-size: 1.25rem;
+  color: var(--title-color);
+  cursor: pointer; 
+}
 
 /*========== Variables Dark theme ==========*/
-
+body.dark-theme {
+  --title-color: hsl(40, 48%, 90%);
+  --text-color: hsl(40, 12%, 70%);
+  --body-color: hsl(40, 12%, 16%);
+  --container-color: hsl(40, 20%, 8%);
+}
 
 /*========== 
 	Color changes in some parts of 
 	the website, in dark theme
 ==========*/
+.dark-theme :is(.nav__menu, .scrollup) {
+  background-color: hsl(40, 20%, 12%);
+}
 
+.dark-theme .home__profession {
+  text-shadow: 0 0 6px hsl(40, 20%, 12%);
+}
+
+.dark-theme::-webkit-scrollbar {
+  background-color: hsl(40, 16%, 15%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb {
+  background-color: hsl(40, 16%, 25%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(40, 16%, 35%);
+}
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
@@ -155,6 +182,7 @@ img {
   top: 0;
   left: 0;
   z-index: var(--z-fixed);
+  transition: background 0.4s;
 }
 
 .nav {
@@ -210,6 +238,7 @@ img {
     margin-inline: 1.5rem;
     border-radius: 0.5rem;
     padding: 1.25rem 3rem;
+    transition: background 0.4s;
   }
 }
 
@@ -264,22 +293,49 @@ img {
   position: absolute;
   width: 50px;
   fill: var(--title-color);
+  transition: fill .4s;
 }
 
 .home__star-1 {
   top: 2.5rem;
   left: -3rem;
   rotate: 17deg;
+  animation: addStar1Animation 4s infinite forwards;
 }
 
 .home__star-2 {
   bottom: 0.75rem;
   right: -3.5rem;
   rotate: -10deg;
+  animation: addStar2Animation 4s infinite forwards;
 }
 
 .home__profession {
   transform: translateY(-1.2rem);
+}
+
+@keyframes addStar1Animation {
+  0% {
+    transform: scale(1) rotate(17deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(34deg);
+  }
+  100% {
+    transform: scale(1) rotate(17deg);
+  }
+}
+
+@keyframes addStar2Animation {
+  0% {
+    transform: scale(1) rotate(-10deg);
+  }
+  50% {
+    transform: scale(0.7) rotate(-20deg);
+  }
+  100% {
+    transform: scale(1) rotate(-10deg);
+  }
 }
 
 /*=============== ABOUT ===============*/
@@ -409,7 +465,7 @@ img {
   color: var(--title-color);
   border-radius: 0.25rem;
   z-index: var(--z-tooltip);
-  transition: bottom 0.4s, transform 0.4s;
+  transition: bottom 0.4s, transform 0.4s, background .4s;
 }
 
 .scrollup:hover {
